@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map of Small Businesses in Iowa City | Linden &amp; Larch</title>
+<meta name="description" content="A simple map of small businesses in Iowa City, showing where to find independent shops, cafés, and makers in downtown, the Northside, Near Southside, and Riverfront Crossings.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;line-height:1.65;color:#1f2a24;background:#faf6ee}
+a{color:#2f5d46}
+a:hover{color:#c8553d}
+.notice{background:#fff3cd;border-bottom:2px solid #e0c46c;padding:.6rem 1rem;font:.85rem/1.4 Arial,Helvetica,sans-serif;text-align:center;color:#3d3200}
+.site-header{background:#2f5d46;color:#fff;padding:1.25rem 1rem .5rem;text-align:center}
+.brand{font-size:1.7rem;font-weight:bold;margin:0}
+.tagline{margin:.2rem 0 .8rem;font-size:.95rem;opacity:.92}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem}
+nav a{display:block;padding:.55rem .85rem;color:#fff;text-decoration:none;font:.95rem Arial,Helvetica,sans-serif;border-radius:4px 4px 0 0}
+nav a:hover,nav a[aria-current="page"]{background:#faf6ee;color:#2f5d46}
+main{max-width:46rem;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:1.9rem;line-height:1.25;color:#2f5d46;margin-top:.5rem}
+h2{font-size:1.4rem;color:#2f5d46;border-bottom:2px solid #ddd5c4;padding-bottom:.25rem;margin-top:2rem}
+h3{font-size:1.15rem;margin:1.2rem 0 .2rem}
+.lead{font-size:1.15rem}
+.card-grid{display:grid;gap:1rem;grid-template-columns:1fr}
+.card{background:#fff;border:1px solid #ddd5c4;border-radius:8px;padding:1rem}
+.card h3{margin-top:0}
+.tip{background:#eef4ef;border-left:5px solid #2f5d46;padding:.8rem 1rem;margin:1.2rem 0}
+.byline{font:.9rem Arial,Helvetica,sans-serif;color:#5a5f58}
+footer{background:#1f2a24;color:#eee;padding:1.5rem 1rem;text-align:center;font:.9rem/1.5 Arial,Helvetica,sans-serif}
+footer p{max-width:46rem;margin:.5rem auto}
+@media(min-width:700px){.card-grid{grid-template-columns:repeat(3,1fr)}h1{font-size:2.3rem}}
+
+/* Map styles (used only on this page) */
+.map-wrap{background:#fff;border:1px solid #ddd5c4;border-radius:8px;padding:.5rem;margin:1rem 0 .5rem}
+.map-wrap svg{display:block;width:100%;height:auto}
+.zone{fill:#eef4ef;stroke:#2f5d46;stroke-width:2}
+.zone-label{font:bold 20px Arial,Helvetica,sans-serif;fill:#2f5d46}
+.mall{fill:#e6dcc3;stroke:#a89a72;stroke-width:1.5}
+.mall-label{font:14px Arial,Helvetica,sans-serif;fill:#5a4f2f;text-anchor:middle}
+.river{fill:none;stroke:#a9cde0;stroke-width:22;stroke-linecap:round}
+.river-label{font:italic 14px Georgia,serif;fill:#2f6283;text-anchor:middle}
+.compass{font:bold 18px Arial,Helvetica,sans-serif;fill:#1f2a24;text-anchor:end}
+.pin{fill:#c8553d;stroke:#fff;stroke-width:2}
+.pin-num{font:bold 15px Arial,Helvetica,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.map-note{font:.85rem/1.5 Arial,Helvetica,sans-serif;color:#5a5f58;margin:.3rem 0 0}
+.key{list-style:none;padding:0;margin:0}
+.key li{display:flex;gap:.7rem;align-items:flex-start;margin:.7rem 0}
+.num{flex:0 0 1.9rem;height:1.9rem;border-radius:50%;background:#c8553d;color:#fff;font:bold .85rem Arial,Helvetica,sans-serif;display:flex;align-items:center;justify-content:center;margin-top:.15rem}
+</style>
+</head>
+<body>
+
+<div class="notice" role="note">This is a fictional website created for educational purposes as part of MKTG:4400 at the University of Iowa. It is not a real business.</div>
+
+<header class="site-header">
+  <p class="brand">Linden &amp; Larch</p>
+  <p class="tagline">Your guide to small businesses in Iowa City, Iowa</p>
+  <nav aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="iowa-city-small-business.html">Iowa City Small Businesses</a></li>
+      <li><a href="small-business-saturday-near-me.html">Small Business Saturday</a></li>
+      <li><a href="locally-owned-stores-downtown-iowa-city.html">Downtown Stores</a></li>
+      <li><a href="map-of-small-businesses-iowa-city.html" aria-current="page">Map</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Map of Small Businesses in Iowa City</h1>
+  <p class="byline">By Dev Raman and Marlene Okafor</p>
+  <p class="lead">Wondering where the independent shops, cafés, and studios are? This map shows the Iowa City small businesses we feature, grouped by neighborhood so you can see at a glance which ones sit close together and which are worth a short trip across town.</p>
+
+  <h2>The Map</h2>
+  <div class="map-wrap">
+    <svg viewBox="0 0 600 520" role="img" aria-labelledby="map-title map-desc">
+      <title id="map-title">Simplified map of small businesses in Iowa City</title>
+      <desc id="map-desc">A schematic diagram showing thirteen numbered small businesses across four areas: Downtown with eight, the Northside with one, Near Southside with two, and Riverfront Crossings with two. The Iowa River runs along the left edge.</desc>
+
+      <path class="river" d="M60 0 C20 130 110 250 50 380 S80 500 70 520"/>
+      <text class="river-label" x="71" y="265" transform="rotate(-90 71 265)">Iowa River</text>
+      <text class="compass" x="580" y="28">&#8593; N</text>
+
+      <rect class="zone" x="330" y="45" width="240" height="135" rx="14"/>
+      <text class="zone-label" x="346" y="75">Northside</text>
+      <circle class="pin" cx="450" cy="125" r="15"/><text class="pin-num" x="450" y="125">9</text>
+
+      <rect class="zone" x="150" y="195" width="300" height="150" rx="14"/>
+      <text class="zone-label" x="166" y="218">Downtown</text>
+      <rect class="mall" x="170" y="262" width="260" height="20" rx="4"/>
+      <text class="mall-label" x="300" y="277">Pedestrian Mall</text>
+      <circle class="pin" cx="200" cy="241" r="15"/><text class="pin-num" x="200" y="241">1</text>
+      <circle class="pin" cx="260" cy="241" r="15"/><text class="pin-num" x="260" y="241">2</text>
+      <circle class="pin" cx="320" cy="241" r="15"/><text class="pin-num" x="320" y="241">3</text>
+      <circle class="pin" cx="380" cy="241" r="15"/><text class="pin-num" x="380" y="241">4</text>
+      <circle class="pin" cx="200" cy="312" r="15"/><text class="pin-num" x="200" y="312">5</text>
+      <circle class="pin" cx="260" cy="312" r="15"/><text class="pin-num" x="260" y="312">6</text>
+      <circle class="pin" cx="320" cy="312" r="15"/><text class="pin-num" x="320" y="312">7</text>
+      <circle class="pin" cx="380" cy="312" r="15"/><text class="pin-num" x="380" y="312">8</text>
+
+      <rect class="zone" x="120" y="370" width="210" height="130" rx="14"/>
+      <text class="zone-label" x="136" y="398">Near Southside</text>
+      <circle class="pin" cx="185" cy="448" r="15"/><text class="pin-num" x="185" y="448">10</text>
+      <circle class="pin" cx="265" cy="448" r="15"/><text class="pin-num" x="265" y="448">11</text>
+
+      <rect class="zone" x="350" y="370" width="220" height="130" rx="14"/>
+      <text class="zone-label" x="366" y="398">Riverfront Crossings</text>
+      <circle class="pin" cx="410" cy="448" r="15"/><text class="pin-num" x="410" y="448">12</text>
+      <circle class="pin" cx="510" cy="448" r="15"/><text class="pin-num" x="510" y="448">13</text>
+    </svg>
+  </div>
+  <p class="map-note">This is a simplified diagram, not drawn to scale. It shows how the neighborhoods relate to one another, not exact street layouts or walking distances.</p>
+
+  <h2>Map Key</h2>
+
+  <h3>Downtown</h3>
+  <ul class="key">
+    <li><span class="num">1</span><div><strong>Hollow Oak Books</strong><br>Used and new books, plus a strong poetry shelf.</div></li>
+    <li><span class="num">2</span><div><strong>Cobblestone Coffee Roasters</strong><br>Small-batch coffee roasted every Tuesday and Friday.</div></li>
+    <li><span class="num">3</span><div><strong>Fieldhouse Threads</strong><br>Locally printed everyday and game-day apparel.</div></li>
+    <li><span class="num">4</span><div><strong>Marigold &amp; Moss</strong><br>Hardy houseplants and gifts, with care notes on every pot.</div></li>
+    <li><span class="num">5</span><div><strong>Paper Wren Stationery</strong><br>Letterpress cards, planners, and wrapping paper.</div></li>
+    <li><span class="num">6</span><div><strong>Second Chorus Records</strong><br>Vinyl in jazz, folk, indie, and classic rock.</div></li>
+    <li><span class="num">7</span><div><strong>Sugar Maple Candy Counter</strong><br>Hand-pulled taffy, chocolate pretzels, and seasonal fudge.</div></li>
+    <li><span class="num">8</span><div><strong>Juniper &amp; Ash Vintage</strong><br>Curated vintage coats, denim, and knitwear.</div></li>
+  </ul>
+
+  <h3>Northside</h3>
+  <ul class="key">
+    <li><span class="num">9</span><div><strong>Pennycress Bakery</strong><br>Cardamom morning buns and sourdough that sells out early.</div></li>
+  </ul>
+
+  <h3>Near Southside</h3>
+  <ul class="key">
+    <li><span class="num">10</span><div><strong>Riverbend Hardware</strong><br>A family-run hardware store with key cutting and pipe repair.</div></li>
+    <li><span class="num">11</span><div><strong>Needle &amp; Nettle Fabric Studio</strong><br>Fabric by the yard and beginner sewing classes.</div></li>
+  </ul>
+
+  <h3>Riverfront Crossings</h3>
+  <ul class="key">
+    <li><span class="num">12</span><div><strong>Copperline Taproom</strong><br>Beer from a team of Iowa homebrewers turned professionals.</div></li>
+    <li><span class="num">13</span><div><strong>Ironwood Fitness Collective</strong><br>Small group classes with no long-term contracts.</div></li>
+  </ul>
+
+  <h2>How the Neighborhoods Connect</h2>
+  <p>Downtown sits at the center of the map and holds the largest cluster of Iowa City small businesses, so it is the easiest place to start. Everything in the downtown group is close enough to visit on one walk along the Pedestrian Mall.</p>
+  <p>The Northside, Near Southside, and Riverfront Crossings each form their own small hubs. They are a short walk, bike ride, or bus ride from downtown, which makes them good second stops once you have explored the center.</p>
+
+  <h2>Using the Map to Plan Your Day</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Walk Downtown</h3><p>Pins 1 through 8 fit into a relaxed afternoon on foot. Start with coffee and end with records.</p></div>
+    <div class="card"><h3>Bike Between Areas</h3><p>The neighborhoods are close enough that a bike is often the quickest way to hop from one cluster to the next.</p></div>
+    <div class="card"><h3>Pair Your Stops</h3><p>Combine a downtown morning with a Northside bakery run, or pair a hardware errand with fabric shopping on the Near Southside.</p></div>
+  </div>
+
+  <div class="tip"><strong>Want more detail?</strong> Read our <a href="iowa-city-small-business.html">Iowa City small business guide</a> for a neighborhood-by-neighborhood tour, or see the <a href="locally-owned-stores-downtown-iowa-city.html">downtown stores walking guide</a> for the shops numbered 1 through 8.</div>
+</main>
+
+<footer>
+  <p>This is a fictional website created for educational purposes as part of MKTG:4400 at the University of Iowa. It is not a real business.</p>
+  <p>&copy; 2026 Linden &amp; Larch. All names, people, and details on this site are invented for a class project.</p>
+</footer>
+
+</body>
+</html>
