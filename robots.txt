@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://carlynims.github.io/iowa-city-small-businesses-guide/sitemap.xml
