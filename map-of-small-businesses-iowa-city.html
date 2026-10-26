@@ -33,16 +33,29 @@ footer p{max-width:46rem;margin:.5rem auto}
 
 /* Map styles (used only on this page) */
 .map-wrap{background:#fff;border:1px solid #ddd5c4;border-radius:8px;padding:.5rem;margin:1rem 0 .5rem}
-.map-wrap svg{display:block;width:100%;height:auto}
-.zone{fill:#eef4ef;stroke:#2f5d46;stroke-width:2}
-.zone-label{font:bold 20px Arial,Helvetica,sans-serif;fill:#2f5d46}
-.mall{fill:#e6dcc3;stroke:#a89a72;stroke-width:1.5}
-.mall-label{font:14px Arial,Helvetica,sans-serif;fill:#5a4f2f;text-anchor:middle}
-.river{fill:none;stroke:#a9cde0;stroke-width:22;stroke-linecap:round}
-.river-label{font:italic 14px Georgia,serif;fill:#2f6283;text-anchor:middle}
-.compass{font:bold 18px Arial,Helvetica,sans-serif;fill:#1f2a24;text-anchor:end}
-.pin{fill:#c8553d;stroke:#fff;stroke-width:2}
-.pin-num{font:bold 15px Arial,Helvetica,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
+.map-wrap svg{display:block;width:100%;max-width:540px;height:auto;margin:0 auto;border-radius:6px}
+.street-bg{fill:#fbf8f1}
+.bank{fill:#cfe3c4}
+.river{fill:none;stroke:#9fcbe3;stroke-width:28;stroke-linecap:round}
+.river-label{font:italic 12px Georgia,serif;fill:#1f5a7a;text-anchor:middle}
+.b-land{fill:#ebe6d8;stroke:#d9d1bc;stroke-width:.8}
+.b-down{fill:#f4d8c0;stroke:#dcbd9f;stroke-width:.8}
+.b-north{fill:#d9e6f0;stroke:#b9cddb;stroke-width:.8}
+.b-south{fill:#e6dff0;stroke:#cbbfde;stroke-width:.8}
+.b-river{fill:#d7ead9;stroke:#b3d3b8;stroke-width:.8}
+.district{fill:none;stroke:#6f7f73;stroke-width:1.5;stroke-dasharray:5 4}
+.park{fill:#b9dba6;stroke:#97c183;stroke-width:1}
+.park-label{font:italic 9px Arial,Helvetica,sans-serif;fill:#2f6322;text-anchor:middle}
+.road{fill:#fff3c9;stroke:#e0c46b;stroke-width:1}
+.mall{fill:#f7e2ae;stroke:#d6b45d;stroke-width:1}
+.mall-label{font:bold 10.5px Arial,Helvetica,sans-serif;fill:#6b4f12;text-anchor:middle}
+.street-label{font:9px Arial,Helvetica,sans-serif;fill:#6b5d2a;text-anchor:middle}
+.zone-label{font:bold 12px Arial,Helvetica,sans-serif;letter-spacing:.06em;fill:#26402f;text-anchor:middle;stroke:#fff;stroke-width:3.5px;paint-order:stroke;stroke-linejoin:round}
+.compass-ring{fill:#fff;stroke:#a89f88;stroke-width:1}
+.compass-arrow{fill:#1f2a24}
+.compass-n{font:bold 9px Arial,Helvetica,sans-serif;fill:#1f2a24;text-anchor:middle}
+.pin{fill:#c8553d;stroke:#fff;stroke-width:1.5}
+.pin-num{font:bold 12px Arial,Helvetica,sans-serif;fill:#fff;text-anchor:middle;dominant-baseline:central}
 .map-note{font:.85rem/1.5 Arial,Helvetica,sans-serif;color:#5a5f58;margin:.3rem 0 0}
 .key{list-style:none;padding:0;margin:0}
 .key li{display:flex;gap:.7rem;align-items:flex-start;margin:.7rem 0}
@@ -74,40 +87,75 @@ footer p{max-width:46rem;margin:.5rem auto}
 
   <h2>The Map</h2>
   <div class="map-wrap">
-    <svg viewBox="0 0 600 520" role="img" aria-labelledby="map-title map-desc">
+    <svg viewBox="0 0 440 500" role="img" aria-labelledby="map-title map-desc">
       <title id="map-title">Simplified map of small businesses in Iowa City</title>
-      <desc id="map-desc">A schematic diagram showing thirteen numbered small businesses across four areas: Downtown with eight, the Northside with one, Near Southside with two, and Riverfront Crossings with two. The Iowa River runs along the left edge.</desc>
+      <desc id="map-desc">A schematic street-grid map showing thirteen numbered small businesses across four areas: Downtown with eight, the Northside with one, Near Southside with two, and Riverfront Crossings with two. The Iowa River runs along the left edge.</desc>
 
-      <path class="river" d="M60 0 C20 130 110 250 50 380 S80 500 70 520"/>
-      <text class="river-label" x="71" y="265" transform="rotate(-90 71 265)">Iowa River</text>
-      <text class="compass" x="580" y="28">&#8593; N</text>
+      <defs>
+        <pattern id="p-land" width="60" height="50" patternUnits="userSpaceOnUse"><rect class="b-land" x="6" y="6" width="48" height="38" rx="3"/></pattern>
+        <pattern id="p-down" width="60" height="50" patternUnits="userSpaceOnUse"><rect class="b-down" x="6" y="6" width="48" height="38" rx="3"/></pattern>
+        <pattern id="p-north" width="60" height="50" patternUnits="userSpaceOnUse"><rect class="b-north" x="6" y="6" width="48" height="38" rx="3"/></pattern>
+        <pattern id="p-south" width="60" height="50" patternUnits="userSpaceOnUse"><rect class="b-south" x="6" y="6" width="48" height="38" rx="3"/></pattern>
+        <pattern id="p-river" width="60" height="50" patternUnits="userSpaceOnUse"><rect class="b-river" x="6" y="6" width="48" height="38" rx="3"/></pattern>
+        <path id="pin-shape" d="M0 0 C-3 -7 -11 -12 -11 -19 A11 11 0 1 1 11 -19 C11 -12 3 -7 0 0 Z"/>
+      </defs>
 
-      <rect class="zone" x="330" y="45" width="240" height="135" rx="14"/>
-      <text class="zone-label" x="346" y="75">Northside</text>
-      <circle class="pin" cx="450" cy="125" r="15"/><text class="pin-num" x="450" y="125">9</text>
+      <rect class="street-bg" x="0" y="0" width="440" height="500"/>
+      <rect class="bank" x="0" y="0" width="60" height="500"/>
+      <rect x="60" y="0" width="380" height="500" fill="url(#p-land)"/>
 
-      <rect class="zone" x="150" y="195" width="300" height="150" rx="14"/>
-      <text class="zone-label" x="166" y="218">Downtown</text>
-      <rect class="mall" x="170" y="262" width="260" height="20" rx="4"/>
-      <text class="mall-label" x="300" y="277">Pedestrian Mall</text>
-      <circle class="pin" cx="200" cy="241" r="15"/><text class="pin-num" x="200" y="241">1</text>
-      <circle class="pin" cx="260" cy="241" r="15"/><text class="pin-num" x="260" y="241">2</text>
-      <circle class="pin" cx="320" cy="241" r="15"/><text class="pin-num" x="320" y="241">3</text>
-      <circle class="pin" cx="380" cy="241" r="15"/><text class="pin-num" x="380" y="241">4</text>
-      <circle class="pin" cx="200" cy="312" r="15"/><text class="pin-num" x="200" y="312">5</text>
-      <circle class="pin" cx="260" cy="312" r="15"/><text class="pin-num" x="260" y="312">6</text>
-      <circle class="pin" cx="320" cy="312" r="15"/><text class="pin-num" x="320" y="312">7</text>
-      <circle class="pin" cx="380" cy="312" r="15"/><text class="pin-num" x="380" y="312">8</text>
+      <rect x="120" y="200" width="240" height="150" fill="url(#p-down)"/>
+      <rect x="240" y="50" width="180" height="100" fill="url(#p-north)"/>
+      <rect x="60" y="350" width="180" height="150" fill="url(#p-south)"/>
+      <rect x="300" y="350" width="120" height="150" fill="url(#p-river)"/>
 
-      <rect class="zone" x="120" y="370" width="210" height="130" rx="14"/>
-      <text class="zone-label" x="136" y="398">Near Southside</text>
-      <circle class="pin" cx="185" cy="448" r="15"/><text class="pin-num" x="185" y="448">10</text>
-      <circle class="pin" cx="265" cy="448" r="15"/><text class="pin-num" x="265" y="448">11</text>
+      <rect class="district" x="120" y="200" width="240" height="150" rx="6"/>
+      <rect class="district" x="240" y="50" width="180" height="100" rx="6"/>
+      <rect class="district" x="60" y="350" width="180" height="150" rx="6"/>
+      <rect class="district" x="300" y="350" width="120" height="150" rx="6"/>
 
-      <rect class="zone" x="350" y="370" width="220" height="130" rx="14"/>
-      <text class="zone-label" x="366" y="398">Riverfront Crossings</text>
-      <circle class="pin" cx="410" cy="448" r="15"/><text class="pin-num" x="410" y="448">12</text>
-      <circle class="pin" cx="510" cy="448" r="15"/><text class="pin-num" x="510" y="448">13</text>
+      <rect class="park" x="366" y="56" width="48" height="38" rx="3"/>
+      <text class="park-label" x="390" y="79">Park</text>
+      <rect class="park" x="306" y="306" width="48" height="38" rx="3"/>
+      <text class="park-label" x="330" y="329">Park</text>
+
+      <path class="river" d="M24 0 C10 115 48 210 26 320 S20 440 30 500"/>
+      <text class="river-label" x="37" y="255" transform="rotate(-90 37 255)">Iowa River</text>
+
+      <rect class="road" x="0" y="193" width="440" height="14"/>
+      <rect class="road" x="0" y="343" width="440" height="14"/>
+      <rect class="road" x="233" y="0" width="14" height="500"/>
+
+      <rect class="mall" x="120" y="241" width="240" height="18" rx="3"/>
+      <text class="mall-label" x="300" y="254.5">Pedestrian Mall</text>
+
+      <text class="street-label" x="395" y="203.3">Mill Street</text>
+      <text class="street-label" x="110" y="353.3">Linden Avenue</text>
+      <text class="street-label" x="243" y="445" transform="rotate(-90 243 445)">Larch Street</text>
+
+      <text class="zone-label" x="180" y="328">DOWNTOWN</text>
+      <text class="zone-label" x="300" y="78">NORTHSIDE</text>
+      <text class="zone-label" x="150" y="374">NEAR SOUTHSIDE</text>
+      <text class="zone-label" x="360" y="366">RIVERFRONT</text>
+      <text class="zone-label" x="360" y="380">CROSSINGS</text>
+
+      <circle class="compass-ring" cx="410" cy="28" r="15"/>
+      <path class="compass-arrow" d="M410 16 L414 30 L410 27 L406 30 Z"/>
+      <text class="compass-n" x="410" y="40">N</text>
+
+      <use href="#pin-shape" class="pin" x="150" y="237"/><text class="pin-num" x="150" y="218">1</text>
+      <use href="#pin-shape" class="pin" x="210" y="237"/><text class="pin-num" x="210" y="218">2</text>
+      <use href="#pin-shape" class="pin" x="270" y="237"/><text class="pin-num" x="270" y="218">3</text>
+      <use href="#pin-shape" class="pin" x="330" y="237"/><text class="pin-num" x="330" y="218">4</text>
+      <use href="#pin-shape" class="pin" x="150" y="289"/><text class="pin-num" x="150" y="270">5</text>
+      <use href="#pin-shape" class="pin" x="210" y="289"/><text class="pin-num" x="210" y="270">6</text>
+      <use href="#pin-shape" class="pin" x="270" y="289"/><text class="pin-num" x="270" y="270">7</text>
+      <use href="#pin-shape" class="pin" x="330" y="289"/><text class="pin-num" x="330" y="270">8</text>
+      <use href="#pin-shape" class="pin" x="330" y="137"/><text class="pin-num" x="330" y="118">9</text>
+      <use href="#pin-shape" class="pin" x="150" y="437"/><text class="pin-num" x="150" y="418">10</text>
+      <use href="#pin-shape" class="pin" x="210" y="437"/><text class="pin-num" x="210" y="418">11</text>
+      <use href="#pin-shape" class="pin" x="330" y="437"/><text class="pin-num" x="330" y="418">12</text>
+      <use href="#pin-shape" class="pin" x="390" y="437"/><text class="pin-num" x="390" y="418">13</text>
     </svg>
   </div>
   <p class="map-note">This is a simplified diagram, not drawn to scale. It shows how the neighborhoods relate to one another, not exact street layouts or walking distances.</p>
